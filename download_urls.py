@@ -1,4 +1,5 @@
-import requests
+import requests as req # I prefer terms res and req
+from time import sleep
 
 
 def nume_scrape(URL, MIN, MAX, output="urls.txt"):
@@ -17,18 +18,19 @@ def nume_scrape(URL, MIN, MAX, output="urls.txt"):
 
 
     for page in range (MIN,MAX):
+        sleep(1)
         current_url = URL + '/' + str(page)
-        thepage = requests.get(current_url, headers=headers, params={'query': 'interview'}, timeout=40)
+        res = req.get(current_url, headers=headers, params={'query': 'interview'}, timeout=40)
 
         # check page exists and is accessible
-        if thepage.status_code != requests.codes.ok:
+        if res.status_code != req.codes.ok:
             continue
         
         # write list to file
         with open(output, 'a', encoding='utf-8') as f:
             f.write(f"\n{current_url}")
         
-        print(current_url, thepage.status_code)
+        print(current_url, res.status_code)
 
 if __name__ == "__main__":
     nume_scrape("http://www.en.kremlin.ru/events/president/transcripts", 65030, 70409)

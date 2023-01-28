@@ -36,12 +36,12 @@ def clean_csv(filename='.\data.csv', TRACE=0):
         print('cleaning', filename)
 
     csv_reader = ""
-    with open(filename, 'r', encoding='utf8') as csv_file:
-        csv_reader = ''.join([i for i in csv_file]).replace("â€™", "'").replace('\n\n', '\n') # turn entire file into 1 line
+    with open(filename, 'r', encoding='utf-8') as csv_file:
+        csv_reader = ''.join([i for i in csv_file]).replace("â€™", "'").replace('\n\n', '\n')
         _remove_emoji(csv_reader) # remove all emojis
 
     # Unfortunately have to read and write in two steps to truncate file properly
-    with open(filename, 'w', encoding='utf8') as csv_file:
+    with open(filename, 'w', encoding='utf-8') as csv_file:
         csv_file.writelines(csv_reader) # write back to csv without destroying data
 
     finished = perf_counter() - start

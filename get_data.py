@@ -72,7 +72,6 @@ if __name__ == "__main__":
 
             with open('data.csv', 'a') as df:
                 writer = csv.DictWriter(df, fieldnames=data.keys())
-                writer.writeheader()
                 writer.writerow(data)
 
         # check page still exists since grabbed url
