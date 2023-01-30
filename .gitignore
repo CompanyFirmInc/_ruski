@@ -1,3 +1,5 @@
+*.db
 *.csv
 *.txt
+cleaner_og.py
 __pycache__/*
