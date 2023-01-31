@@ -2,7 +2,6 @@ import csv
 import requests as req
 from bs4 import BeautifulSoup
 from time import sleep
-from clean_data import remove_emoji
 
 def main(MIN, MAX, URL = "http://www.en.kremlin.ru/events/president/transcripts/"):
     """
@@ -52,10 +51,10 @@ def main(MIN, MAX, URL = "http://www.en.kremlin.ru/events/president/transcripts/
 
             # create data dict for csv later
             data = {
-                'url':      remove_emoji(URL),
-                'title':    remove_emoji(title),
-                'date':     remove_emoji(date),
-                'time':     remove_emoji(time),
+                'url':      URL,
+                'title':    title,
+                'date':     date,
+                'time':     time,
                 'body':     body
             }
 
@@ -67,7 +66,7 @@ def main(MIN, MAX, URL = "http://www.en.kremlin.ru/events/president/transcripts/
                 except:
                     body = ''
 
-            data['body'] = remove_emoji(body)
+            data['body'] = body
 
             with open('data.csv', 'a', encoding='utf-8') as df:
                 writer = csv.DictWriter(df, fieldnames=data.keys())
