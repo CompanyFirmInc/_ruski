@@ -1,7 +1,7 @@
 """
 Runs a scraper that downloads from the Kremlin
 """
-from json import dumps
+import os
 import requests
 from time import sleep
 from bs4 import BeautifulSoup
@@ -18,6 +18,10 @@ def main():
     range numerically in order
     """
     print("running")
+
+    # creates directory if it hasn't been made already
+    if not os.path.isdir('text_data'):
+        os.makedirs('text_data')
 
     # this needs the order [MIN -> MAX] you utter numpty
     for num in range(MIN,MAX):
